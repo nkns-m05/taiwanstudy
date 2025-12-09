@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>台湾留学ガイド</title>
+    <!-- 導入 Tailwind CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded 1c:wght@700;900&display=swap" rel="stylesheet">
+    
+    <!-- 設置 Tailwind 顏色配置 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-pink': '#ff99cf',      // ソフトな主色ピンク
+                        'secondary-light': '#FFFFFF',   // 完全な白
+                        'text-dark': '#333333',         // ニュートラルな濃いグレー
+                        'text-gray': '#4d4d4d',         //薄いグレー
+                        'text-berry': '#A1005A',        // タイトルや強いアクセントのベリーピンク
+                        'pale-pink': '#F3F4F6',         // 全体のメイン背景色
+                        'noaml-pink': '#db5884',        // 真ん中ピンク      
+
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        'cute': ['"M PLUS Rounded 1c"', 'sans-serif'], 
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- ★★★ カスタムCSSをここに統合します ★★★ -->
+    <style>
+        /* ---------------------------------------------------- */
+        /* ★ 台湾留学応援サイト用カスタムCSS (すべてここに含まれます) */
+        /* ---------------------------------------------------- */
+
+        /* スムーズスクロールを有効にする */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* -------------------------- */
+        /* ★ セクションタイトルと共通ユーティリティクラス */
+        /* -------------------------- */
+        .section-container {
+            /* セクションのパディング */
+            padding-top: 3rem;   /* py-12 相当 */
+            padding-bottom: 3rem; /* py-12 相当 */
+        }
+
+        /* セクションタイトル: 全画面サイズで文字サイズを大幅に大きくし、フォントをカスタムフォントに変更 */
+        .section-title {
+            /* モバイル (40px) -> スマホ縦向き (56px) -> タブレット (72px) -> デスクトップ (96px, 6rem) */
+            font-size: 4rem; /* 40px */
+            font-weight: 800; /* font-black */
+            margin-bottom: 4rem; /* mb-10 */
+            text-align: center;
+            font-family: '"M PLUS Rounded 1c"', sans-serif; /* font-cute */
+            letter-spacing: 0.1em; /* tracking-widest */
+            line-height: 1; /* leading-none */
+        }
+        @media (min-width: 640px) {
+            .section-title { font-size: 1.5rem; /* sm:text-[3.5rem] */ }
+        }
+        @media (min-width: 768px) {
+            .section-title { font-size: 2.5rem; /* md:text-[4.5rem] */ }
+        }
+        @media (min-width: 1024px) {
+            .section-title { font-size: 3rem; /* lg:text-[6rem] */ }
+        }
+
+
+        /* ナビゲーションリンク */
+        .nav-link {
+            padding: 0.5rem 0.75rem; /* px-3 py-2 */
+            border-radius: 0.375rem; /* rounded-md */
+            transition: all 150ms ease-in-out; /* transition duration-150 */
+        }
+        .nav-link:hover {
+            background-color: rgba(244, 114, 182, 0.1); /* hover:bg-primary-pink/10 */
+            color: #A1005A; /* hover:text-text-berry */
+        }
+
+        /* モバイルナビゲーションリンク */
+        .mobile-nav-link {
+            display: block;
+            padding: 0.5rem 0.75rem; /* px-3 py-2 */
+            border-radius: 0.375rem; /* rounded-md */
+            color: #374151; /* text-text-dark */
+            transition: all 150ms ease-in-out;
+        }
+        .mobile-nav-link:hover {
+            background-color: rgba(244, 114, 182, 0.1); /* hover:bg-primary-pink/10 */
+            color: #A1005A; /* hover:text-text-berry */
+        }
+
+        /* -------------------------- */
+        /* ★ タイムライン用カスタムCSS */
+        /* -------------------------- */
+        .timeline-dot-container {
+            /* 相対位置を維持 */
+            position: relative;
+        }
+        .timeline-dot {
+            /* タイムラインの丸い点。垂直線の位置に配置 */
+            position: absolute;
+            top: 0.25rem; /* top-1 */
+            left: 0.875rem; /* left-3.5 (14px) */
+            height: 0.75rem; /* h-3 */
+            width: 0.75rem; /* w-3 */
+            border-radius: 9999px; /* rounded-full */
+            background-color: #A1005A; /* bg-text-berry */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1); /* shadow-lg */
+        }
+        .timeline-details {
+            /* タイムラインの吹き出し部分 */
+            padding: 1rem; /* p-4 */
+            margin-left: 2.5rem; /* ml-10 */
+            border-radius: 0.75rem; /* rounded-xl */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06); /* shadow-md */
+            border-left-width: 4px; /* border-l-4 */
+        }
+
+        /* -------------------------- */
+        /* ★ その他のカスタムクラス */
+        /* -------------------------- */
+
+        /* ギャラリー画像 */
+        .image-gallery-item {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            border-radius: 0.75rem; /* rounded-xl */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1); /* shadow-lg */
+            transition: all 300ms ease-in-out; /* transition duration-300 */
+        }
+        .image-gallery-item:hover {
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); /* hover:shadow-2xl */
+            transform: scale(1.05); /* transform hover:scale-[1.05] */
+        }
+
+        /* フォーム入力欄 */
+        .input-field {
+            width: 100%;
+            padding: 0.75rem; /* p-3 */
+            border-width: 2px; /* border-2 */
+            border-color: #E5E7EB; /* border-gray-200 */
+            border-radius: 0.5rem; /* rounded-lg */
+            transition: border-color 150ms ease-in-out, box-shadow 150ms ease-in-out; /* transition duration-150 */
+        }
+        .input-field:focus {
+            border-color: #F472B6; /* focus:border-primary-pink */
+            --tw-ring-color: #F472B6; /* focus:ring-primary-pink */
+            --tw-ring-opacity: 1;
+            --tw-ring-width: 3px;
+            box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+        }
+
+
+        /* ソーシャルリンク */
+        .social-link {
+            color: white; /* text-white */
+            transition: color 300ms ease-in-out; /* transition duration-300 */
+        }
+        .social-link:hover {
+            color: #F472B6; /* hover:text-primary-pink */
+        }
+        
+        /* :以降の文字揃え　*/
+        .grid-container {
+            display: grid;
+            grid-template-columns: 1fr auto; /* 最初の列は利用可能なスペースを埋め、2番目の列はコンテンツの幅になる */
+            width: 300px;
+            border: 1px solid #ccc;
+            padding: 5px;
+        }
+        
+        .align-right {
+            text-align: right; /* テキストをセル内で右揃えにする */
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: 1fr auto; /* 最初の列は利用可能なスペースを埋め、2番目の列はコンテンツの幅になる */
+            width: 300px;
+            border: 1px solid #ccc;
+            padding: 5px;
+        }
+        
+        .align-right {
+            text-align: right; /* テキストをセル内で右揃えにする */
+        }
+        
+
+     </style>
+</head>
+<body class="bg-pale-pink font-sans text-text-dark">
+
+    <!-- 導覽列 (Navdar) - 固定在頂部、響應式 -->
+    <nav class="sticky top-0 z-50 shadow-md" 
+         style="background-color: #ffffff; background-image: repeating-linear-gradient(45deg, rgba(244, 114, 182, 0.1), rgba(244, 114, 182, 0.1) 4px, #ffffff 4px, #ffffff 8px);">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- 網站標題/Logo -->
+                <div class="flex-shrink-0">
+                    <a href="#hero" class="text-2xl font-bold text-noaml-pink hover:text-noaml-pink transition duration-300">
+                        台湾留学ガイド
+                    </a>
+                </div>
+
+                <!-- 桌面版連結 (Desktop Links) -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4 text-sm font-medium">
+                        <!-- ここで 'nav-link' クラスを使用 -->
+                        <a href="#about" class="nav-link">台湾留学について</a>
+                        <a href="#chinese" class="nav-link">中国語の勉強法</a>
+                        <a href="#before" class="nav-link">出発前に</a>
+                        <a href="#after" class="nav-link">台湾到着後</a>
+                        <a href="#life" class="nav-link">台湾生活</a>
+                        <a href="#contact" class="nav-link">お問い合わせ</a>
+                    </div>
+                </div>
+
+                <!-- 手機版選單按鈕 (Hamburger) -->
+                <div class="md:hidden">
+                    <button id="menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-text-dark hover:text-primary-pink focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-pink">
+                        <!-- Menu Icon SVG -->
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 手機版選單內容 (預設隱藏) -->
+        <div id="mobile-menu" class="md:hidden hidden">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 text-sm font-bold">
+                 <!-- ここで 'mobile-nav-link' クラスを使用 -->
+                <a href="#about" class="mobile-nav-link" data-close-menu>台湾留学について</a>
+                <a href="#chinese" class="mobile-nav-link" data-close-menu>中国語の勉強法</a>
+                <a href="#before" class="mobile-nav-link" data-close-menu>出発前に</a>
+                <a href="#after" class="mobile-nav-link" data-close-menu>台湾到着後</a>
+                <a href="#life" class="mobile-nav-link" data-close-menu>台湾生活</a>
+                <a href="#contact" class="mobile-nav-link" data-close-menu>お問い合わせ</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主視覺（Hero） -->
+    <section id="hero" class="relative overflow-hidden bg-cover bg-center h-screen flex items-center justify-center" 
+             style="background-image: url('css/image/taipei-101.jpg')">
+        
+        <!-- Overlay for contrast and professional look -->
+        <div class="absolute inset-0 bg-text-dark/40"></div>
+        
+        <div class="relative z-10 text-center p-6 bg-white/50 rounded-3xl shadow-3xl max-w-6xl mx-5">
+            <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black font-cute text-text-berry mb-4 leading-tight">
+                新しい自分に出逢いに行こう
+            </h1>
+            <p class="text-lg sm:text-xl lg:text-2xl font-medium text-text-dark">
+                台湾留学ガイドブック
+            </p>
+        </div>
+    </section>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-24">
+
+        <!-- 1. 台湾留学について (About studying in Taiwan) -->
+        <section id="about" class="section-container">
+            <h2 class="section-title text-text-berry font-cute">台湾留学について</h2>
+            
+            <p class="text-lg text-center">
+                治安の良さ、親日的な文化、そして費用対効果の高さ。台湾はアジア圏で最も魅力的な留学先の一つです。<br>
+                私が台湾をおすすめする理由をご紹介します。
+            </p>
+             <br></br>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                
+                <!-- Card 1: 費用の優位性 -->
+                <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition duration-300 border-t-4 border-primary-pink">
+                    <div class="flex items-center space-x-3 mb-3">
+                        <span class="text-3xl text-gray">💸</span>
+                        <h3 class="text-2xl font-bold">費用の優位性</h3>
+                    </div>
+                    <p class="text-gray-700">欧米圏と比較して、学費・生活費がリーズナブル。円安の現在でも、賢く留学を実現できます。</p>
+                </div>
+                
+                <!-- Card 2: 親日的な文化 -->
+                <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition duration-300 border-t-4 border-text-berry">
+                    <div class="flex items-center space-x-3 mb-3">
+                        <span class="text-3xl text-text-berry">🤝</span>
+                        <h3 class="text-2xl font-bold">親日的な国民性</h3>
+                    </div>
+                    <p class="text-gray-700">日本語が通じる場所も多く、困った時に助けてくれる人が多いのが魅力です。日本人を嫌う台湾人にはほぼ出会ったことがありません。安心して交流を深めましょう。</p>
+                </div>
+                
+                <!-- Card 3: 治安の良さ -->
+                <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition duration-300 border-t-4 border-primary-pink">
+                    <div class="flex items-center space-x-3 mb-3">
+                        <span class="text-3xl text-primary-pink">🛡️</span>
+                        <h3 class="text-2xl font-bold">安心できる治安</h3>
+                    </div>
+                    <p class="text-gray-700">特に女性の一人歩きでも比較的安全。安心して生活基盤を築けます。しかし日本と同様、100安全というのはありえません。自分の身は自分で守れるよう最低限の防犯は怠らず。</p>
+                </div>
+                
+                <!-- Card 4: 中国語と英語の環境 -->
+                <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition duration-300 border-t-4 border-text-berry">
+                    <div class="flex items-center space-x-3 mb-3">
+                        <span class="text-3xl text-text-berry">🗣️</span>
+                        <h3 class="text-2xl font-bold">二言語環境</h3>
+                    </div>
+                    <p class="text-gray-700">中国語だけでなく、アジアのビジネスハブとして英語学習の機会も豊富です。台湾人は日本人と比べて英語能力が圧倒的に上です。英語学習にも積極的に取り組みましょう。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. 中国語の勉強法 (How to learn Chinese) -->
+        <section id="chinese" class="section-container">
+            <h2 class="section-title text-text-berry font-cute">中国語の勉強法</h2>
+            
+            <div class="space-y-6">
+                <!-- メインの説明文 -->
+                <p class="text-lg text-center">
+                    中国語学習のスタートは人それぞれですが、台湾留学を成功させる鍵は「<strong>自分に合った学習スタイルを見つけること</strong>」です。<br>
+                    私は台湾に進学する人の予備校に通いました。一人では何から始めればいいか分からない人にはおすすめです。
+                </p>
+
+                <!-- 学習ツールのおすすめブロック -->
+                 <br></br>
+                <h3 class="text-2xl text-noaml-pink font-cute">📚 学習ツールのおすすめ</h3>
+                <ul class="text-lg bg-white p-4 rounded-xl shadow-lg border-l-4 border-text-berry">
+                    
+                    <!-- アイテム 1: 語学アプリ - Gridでぶら下げインデントを実現 -->
+                    <li class="grid grid-cols-[auto_1fr] gap-x-2">
+                        <span class="font-bold whitespace-nowrap">1.語学アプリ：</span>
+                        <span>語学アプリの性能にもよりますが、現代の便利なツールの1つです。自分の発音したい言葉が認識されるまでひたすら繰り返し練習しましょう。発音の練習にはGoogleの音声認識を利用するのがおすすめです!自分が発音が正しく認識されるまで繰り返し練習しましょう。</span>
+                    </li>
+                    
+                
+                        <br>
+                        
+                    <!-- アイテム 3: 台湾ドラマ - Gridでぶら下げインデントを実現 -->
+                    <li class="grid grid-cols-[auto_1fr] gap-x-2 mt-3">
+                        <span class="font-bold whitespace-nowrap">2.台湾ドラマや映画・音楽：</span>
+                        <span>リスニング強化や現地の言葉遣いを知ることができます。面白いドラマや映画も多いので休憩がてら見ることをお勧めします。</span>
+                    </li>
+                    
+                    <!-- アイテム 4: my recommend (コンテンツ) - Gridでぶら下げインデントを実現 -->
+                    <li class="grid grid-cols-[auto_1fr] gap-x-2 mt-3"> 
+                        <span class="whitespace-nowrap">🎬 my recommend :</span>
+                        <span>時をかける愛(ドラマ)、花より男子(ドラマ)、如果可以(音楽)</span>
+                    </li>
+                        <br>
+                        
+                    <!-- アイテム 5: 言語交換パートナー - Gridでぶら下げインデントを実現 -->
+                    <li class="grid grid-cols-[auto_1fr] gap-x-2 mt-3">
+                        <span class="font-bold whitespace-nowrap">3.言語交換パートナー：</span>
+                        <span>もし中国語を話す友達がいれば積極的に会話しましょう。語学勉強においてアウトプットがかなり重要です。もしいなければ、一人でもとにかく発音しましょう。スピーキングは練習次第です！</span>
+                    </li>
+                </ul>
+
+                <!-- 語学学校 vs. 自主学習 -->
+                 <br></br>
+                <h3 class="text-2xl font-cute text-noaml-pink">🏫 語学学校 vs. 自主学習</h3>
+                <ul class="text-lg bg-white p-4 rounded-xl shadow-lg border-l-4 border-primary-pink">
+                    
+                    <span class="grid grid-cols-[auto_1fr] gap-x-2 mt-3"><strong> 進学予備校：</strong></span> 
+                    <span>体系的なカリキュラムで基礎を固めやすい。友達作りや情報交換の場にもなります。また、アウトプットする機会も多いので努力すればするほど身につきます。しかし学習時間を重視するので、自分次第でサボることもできます。自分に甘い人はとても危険です。</span>
+                        <br>
+                    <span class="grid grid-cols-[auto_1fr] gap-x-2 mt-3"><strong> 自主学習：</strong></span>
+                    <span>自分のペースで進められ、費用を抑えることができる。アプリやポッドキャストを駆使しましょう。自分に合った勉強法で学習できますが、実践する場面が少ないのがデメリットです。アウトプットする機会を必ずつくるようにしましょう。</span>
+                </ul>
+                
+                <!-- 望結流！成功体験談 -->
+                 <br></br>
+                <h3 class="text-2xl font-cute text-noaml-pink">📝 私流！中国語体験談</h3>
+                <p class="text-lg bg-white p-4 rounded-xl shadow-lg border-l-4 border-text-berry">
+                    私が特に効果的だと感じたのは、日常でとにかく現地の人と会話することです。バイトや授業など話さなければいけない環境で、失敗してもいいのでとにかくしゃべることが大切です。私自身、今の語学力の８割９割は現地で習得したものだと思います。間違えるのは当たり前、間違え続けて覚えるで大丈夫！台湾人は優しい人が多いので頑張って伝えようとしたらわかってくれます。どんどん経験をつもう！
+                </p>
+            </div>
+        </section>
+
+        <!-- 3. 出発前に (Before departing for Taiwan) - 包含期表 (Timeline) -->
+        <section id="before" class="section-container">
+            <h2 class="section-title text-text-berry font-cute">出発前に：準備チェックリスト</h2>
+
+             <p class="text-lg text-center">
+                1年前からの準備のだいたいの流れをまとめました。<br>
+                私の留学までの実際の流れですが、人によって変わるので参考程度でご利用ください。
+            </p>
+
+             <br></br>
+            
+            <!-- 期表 (Timeline) 模擬 -->
+            <div class="relative max-w-4xl mx-auto">
+                <!-- 垂直線。全画面サイズで左端に固定 -->
+                <div class="absolute left-4 top-0 bottom-0 w-1 bg-text-berry rounded-full"></div>
+                
+                <div class="space-y-12 pt-4">
+                    <!-- Step 1: 1年前〜半年前 -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot-container mt-3"> 
+                            <div class="timeline-dot"></div>
+                            <h3 class="text-2xl font-bold mb-1 text-noaml-pink ml-10">1年前〜半年前</h3>
+                            <p class="text-lg ml-10"><strong>予備校入学、志望校決定</strong></p>
+                            <br>
+                        </div>
+                        <!-- ここで 'timeline-dot-container' とその中のクラスを使用 -->
+
+                            <div class="timeline-details bg-white border-primary-pink">
+                                <ul class="list-disc list-inside ml-8">
+                                    <li>パスポートの準備（申請する時期にもよりますが、１ヶ月ほど余裕を持って準備しましょう）</li>
+                                    <li>予備校入学（予備校については別で記載）</li>
+                                    <li>中国語の勉強開始（一番大事な語学勉強！頑張りましょう）</li>
+                                    <li>予備校の合宿参加</li>
+                                    <li>志望校決定、必要書類書類準備</li>
+                                    <li>予備校へ必要書類の提出（高校の調査書、パスポート、個人情報関連資料）</li>
+                                </ul>
+                            </div>
+                    </div>
+
+                    <!-- Step 2: ~3ヶ月前 -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot-container mt-3">
+                            <div class="timeline-dot"></div>
+                            <h3 class="text-2xl font-bold mb-1 text-noaml-pink ml-10">〜3ヶ月前</h3>
+                            <p class="text-lg ml-10"><strong>ビザ申請と渡航準備</strong></p>
+                            <br>
+                        </div>
+                         <div class="timeline-details bg-white border-text-berry">
+                                <ul class="list-disc list-inside ml-8">
+                                    <li>航空券の予約</li>
+                                    <li>ビザ申請書類の準備・提出</li>
+                                    <li>海外保険の加入</li>
+                                    <li>身体検査、抗体検査（不足している場合注射）</li>
+                                    <li>大学合否発表、入学準備、必要経費支払い</li>
+                                </ul>
+                         </div>
+                    </div>
+
+                    <!-- Step 3: 〜1ヶ月前 -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot-container mt-3">
+                            <div class="timeline-dot"></div>
+                            <h3 class="text-2xl font-bold mb-1 text-noaml-pink ml-10">〜1ヶ月前</h3>
+                            <p class="text-lg ml-10"><strong>日本満喫、荷造り</strong></p>
+                            <br>
+                        </div>
+                        <div class="timeline-details bg-white border-primary-pink">
+                            <ul class="list-disc list-inside ml-8">
+                                    <li>予備校の残り時間消費（ラストスパート！！）</li>
+                                    <li>荷造り（直前では不安なので１ヶ月前ぐらいから準備し始めてたら安心）</li>
+                                    <li>日本での住民票・年金手続き</li>
+                                    <li>日本満喫（短くても半年は学校で帰れないので今のうちに遊ぼう！）</li>
+                             </ul>
+                        </div>
+                    </div>
+
+                    <!-- Step 4: 直前 -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot-container mt-3">
+                            <div class="timeline-dot"></div>
+                            <h3 class="text-2xl font-bold mb-1 text-noaml-pink ml-10">渡航直前</h3>
+                            <p class="text-lg ml-10"><strong>最終確認とリラックス</strong></p>
+                            <br>
+                        </div>
+                            <div class="timeline-details bg-white border-text-berry">
+                                <ul class="list-disc list-inside ml-8">
+                                    <li>台湾ドルの両替（少額でOK）</li>
+                                    <li>SIMフリー携帯の確認</li>
+                                    <li>荷物の最終確認</li>
+                                    <li>空港到着後の流れ確認</li>
+                                </ul>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 4. 台湾到着後 (After arriving in Taiwan) -->
+        <section id="after" class="section-container">
+            <h2 class="section-title text-text-berry font-cute">台湾到着後：忘れずに手続きしよう！</h2>
+            <p class="text-lg text-center">
+                台湾での生活をスタートさせるために、到着後に必ず行うべき重要手続きをまとめました。<br>
+                特に居留証（ARC）の申請は期限があるので要注意です。
+            </p>
+
+             <br></br>
+
+            <!-- カードレイアウト -->
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- 手続き 1: 居留証（ARC）の申請 -->
+                <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition duration-300 border-t-4 border-primary-pink">
+                    <div class="flex items-center space-x-3 mb-3">
+                        <span class="text-3xl text-primary-pink">🆔</span>
+                        <h3 class="text-2xl font-bold font-cute">居留証 (ARC) 申請</h3>
+                    </div>
+                    <p class="text-gray-700"><strong>期限厳守！</strong> 入国後15日以内に現地の移民署で申請が必要です。ネットに必要書類や手続きの手順などが載っているので参考にしましょう。</p>
+                </div>
+                <!-- 手続き 2: 銀行口座開設 -->
+                <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition duration-300 border-t-4 border-text-berry">
+                    <div class="flex items-center space-x-3 mb-3">
+                        <span class="text-3xl text-primary-pink">🏧</span>
+                        <h3 class="text-2xl font-bold font-cute">銀行または郵便口座開設</h3>
+                    </div>
+                    <p class="text-gray-700">生活費の管理や家賃の支払いには必須。パスポートと居留証（または申請受付証）が必要です。まずは２つのうちどちらかを開設しましょう。</p>
+                </div>
+                <!-- 手続き 3: 電話番号/SIMカード -->
+                <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition duration-300 border-t-4 border-primary-pink">
+                    <div class="flex items-center space-x-3 mb-3">
+                        <span class="text-3xl text-primary-pink">📞</span>
+                        <h3 class="text-2xl font-bold font-cute">台湾の電話番号取得</h3>
+                    </div>
+                    <p class="text-gray-700">学校や公的手続きに必要。空港や通信キャリアの店舗で手続きできます。未成年の場合、代理人を一人連れて行く必要があります。大学の先輩などに頼みましょう。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. 台湾生活 (Life in Taiwan) -->
+        <section id="life" class="section-container">
+            <h2 class="section-title text-text-berry font-cute">台湾生活：異文化交流と注意点</h2>
+            
+            <p class="text-lg text-center">
+                台湾の魅力は、何と言ってもその活気ある食文化と人々の優しさ。<br>
+                日本との違いを楽しみながら、安全に暮らすためのポイントをお伝えします。
+            </p>
+
+             <br></br>
+
+            <!-- 写真ギャラリー模擬 (Placeholder Photos) -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+                <!-- ここで 'image-gallery-item' クラスを使用 -->
+                <img src="css/image/baiku.JPG" alt="台湾の屋台料理のイメージ" class="image-gallery-item">
+                <img src="css/image/kyuufun.jpeg" alt="賑わう夜市のイメージ" class="image-gallery-item">
+                <img src="css/image/tora.jpg" alt="台湾のお寺のイメージ" class="image-gallery-item">
+                <img src="css/image/yoichi.jpg" alt="現地で交流しているイメージ" class="image-gallery-item">
+            </div>
+
+            <!-- 台湾と日本の生活方式の違い＆注意点 -->
+            <div class="grid lg:grid-cols-2 gap-10">
+                <div>
+                    <h3 class="text-3xl font-bold mb-4 text-noaml-pink font-cute">🇯🇵 vs. 🇹🇼 生活の違いを楽しむ</h3>
+                    <ul class="space-y-4 text-lg">
+                        <li class="p-4 bg-white rounded-lg shadow border-l-4 border-text-berry">
+                            <strong>食文化:</strong> 日本のような定食文化より、外食や屋台（夜市）が中心。安くて美味しいものが溢れています。抵抗感のあるものも多いですが、何事も挑戦！積極的に食べてみてね。
+                        </li>
+                        <li class="p-4 bg-white rounded-lg shadow border-l-4 border-primary-pink">
+                            <strong>時間の感覚:</strong> 日本よりルーズな人が多い印象ですが、流されないように！バスの時間はアプリを駆使しましょう。
+                        </li>
+                        <li class="p-4 bg-white rounded-lg shadow border-l-4 border-text-berry">
+                            <strong>性格:</strong> 人との距離感が近く、積極的に話しかけてくれる人が多いです。大丈夫と思えれば相手をしてあげましょう。
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-3xl font-bold mb-4 text-noaml-pink font-cute">🚨 台湾生活で注意したいこと</h3>
+                    <ul class="space-y-4 text-lg">
+                        <li class="p-4 bg-white rounded-lg shadow border-l-4 border-primary-pink/80">
+                            <strong>交通事情:</strong> バイクが多く、歩行者優先ではない場所も。信号や周囲の確認は怠らないようにしましょう。公共交通機関の料金はとにかく安い！YouBikeというレンタル自転車もおすすめです！
+                        </li>
+                        <li class="p-4 bg-white rounded-lg shadow border-l-4 border-text-berry/80">
+                            <strong>衛生面:</strong> トイレットペーパーがないなど異文化を感じることが多々あります。気になる人は消毒液などの衛生グッツを持ち歩きましょう。
+                        </li>
+                        <li class="p-4 bg-white rounded-lg shadow border-l-4 border-primary-pink/80">
+                            <strong>蚊対策:</strong> 特に夏場は蚊が多いです。虫除け対策は日本から持参することをおすすめします。日本で刺されるより体感かゆいです。
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 6. 聯絡資訊 (Contact Info) -->
+        <section id="contact" class="section-container pt-16">
+            <h2 class="section-title text-text-berry font-cute">お問い合わせ</h2>
+            <!-- フォーム全体の幅を変更 -->
+            <div class="max-w-2xl mx-auto space-y-6 bg-white p-8 rounded-2xl shadow-xl border-t-8 border-primary-pink">
+                <p class="text-xl font-medium text-center">
+                    台湾留学に関するご質問や、私へのメッセージはこちらからお気軽にどうぞ！
+                </p>
+                <!-- 模擬聯絡表單 (Contact Form Simulation) -->
+                <form>
+                    
+                    <!-- Main Grid Container: 1列 (モバイル) / 2列 (lg以上) -->
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+                        
+                        <!-- 左側: お名前とメールアドレス (スタック) -->
+                        <div class="space-y-4">
+                            <!-- フィールド 1: お名前 -->
+                            <div>
+                                <label for="name" class="block text-left text-sm font-semibold text-text-dark mb-1">お名前 (必須)</label>
+                                <!-- ここで 'input-field' クラスを使用 -->
+                                <input type="text" id="name" placeholder="例：山田 太郎" class="input-field" required>
+                            </div>
+
+                            <!-- フィールド 2: メールアドレス -->
+                            <div>
+                                <label for="email" class="block text-left text-sm font-semibold text-text-dark mb-1">メールアドレス (必須)</label>
+                                <input type="email" id="email" placeholder="例：your.email@example.com" class="input-field" required>
+                            </div>
+                        </div>
+                        
+                        <!-- 右側: お問い合わせ内容 (メッセージ) -->
+                        <div>
+                            <label for="message" class="block text-left text-sm font-semibold text-text-dark mb-1">お問い合わせ内容 (必須)</label>
+                            <textarea id="message" placeholder="具体的な質問やメッセージをご記入ください。" rows="9" class="input-field resize-none" required></textarea>
+                        </div>
+                        
+                    </div>
+
+                    <!-- ボタン (常に全幅) -->
+                    <button type="submit" class="w-full py-3 bg-primary-pink hover:bg-primary-pink/90 text-white font-bold rounded-xl shadow-md transition duration-300">
+                        送信する
+                    </button>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- 頁尾 (Footer) -->
+    <footer class="bg-text-dark py-8 mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white/80">
+            <h3 class="text-2xl font-bold mb-4 text-primary-pink">MY SNS</h3>
+            
+            <!-- 社群連結 (Instagram & YouTube) -->
+            <div class="flex justify-center space-x-6 mb-4">
+                 <!-- ここで 'social-link' クラスを使用 -->
+                <a href="#" target="_blank" class="social-link">
+                    <!-- Instagram Icon SVG -->
+                    <svg xmlns="https://www.instagram.com/onejie_memories.05?igsh=MWNmOWZrNndna2M2Mw%3D%3D&utm_source=qr" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                    <span class="sr-only">Instagram</span>
+                </a>
+                <a href="#" target="_blank" class="social-link">
+                    <!-- YouTube Icon SVG -->
+                    <svg xmlns="https://youtube.com/@onejie_memories.05?si=GIT4fNDFqTZAAVjg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 15l5-3-5-3v6z"></path><rect x="2" y="3" width="20" height="18" rx="5"></rect></svg>
+                    <span class="sr-only">YouTube</span>
+                </a>
+            </div>
+
+            <p class="text-sm"><strong>my ホームページ</strong><a href="https://nkns-m05.github.io">https://nkns-m05.github.io</a></p>
+
+            <p class="text-sm">
+                &copy; 2025 台湾留学サポート. All Rights Reserved.
+            </p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Mobile Menu Toggle and Utility Classes -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuButton = document.getElementById('menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const navLinks = document.querySelectorAll('[data-close-menu]');
+
+            // Toggle mobile menu visibility
+            menuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // Close mobile menu when a link is clicked
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
